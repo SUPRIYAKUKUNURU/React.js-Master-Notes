@@ -1,7 +1,7 @@
 import React from 'react';
 
  
-function HtmlCard({image,name}) {  //destructuring from aspp.js
+function HtmlCard({image,name}) {  //destructuring from app.js
     
   return (
     <div className="card" style={{ width: '18rem' }}>
