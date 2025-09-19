@@ -15,6 +15,10 @@ import Thinking from './assets/Thinking.jpg'
       {
         image:Thinking,
         name:"thinking"
+      },
+      {
+        image: Sad,
+        name:"sad"
       }
     ]
  
