@@ -6,7 +6,7 @@ import Thinking from './assets/Thinking.jpg'
 
     const Emogies=[{
         image:Blushing,
-        name:'happy'
+        name:'Happy'
       },
       {
         image:Shocking,
@@ -14,7 +14,7 @@ import Thinking from './assets/Thinking.jpg'
       },
       {
         image:Thinking,
-        name:"thinking"
+        name:"Thinking"
       },
       {
         image: Sad,
