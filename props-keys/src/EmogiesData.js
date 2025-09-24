@@ -18,7 +18,7 @@ import Thinking from './assets/Thinking.jpg'
       },
       {
         image: Sad,
-        name:"sad"
+        name:"Sad"
       }
     ]
  
