@@ -26,7 +26,7 @@ function App(){
 //ternary operator
 
 
-  const stock = falsew;
+  const stock = false;
   return(
     <>
     {stock?<button className="bg-success">Available</button>:<button className="bg-danger">Unavailable</button>}
