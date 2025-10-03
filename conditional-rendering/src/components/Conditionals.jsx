@@ -25,15 +25,22 @@ function Conditionals() {
           //     )
 
 //ternary operator
+        // const stock = true;
+        // return(
+        // <>
 
-
-  const stock = true;
-  return(
-    <>
-
-    {stock?<button className="bg-success">Available</button>:<button className="bg-danger">Unavailable</button>}
-    </>
-  )
+        // {stock?<button className="bg-success">Available</button>:<button className="bg-danger">Unavailable</button>}
+        // </>
+        // )
+       
+        
+        //short -circuit operator
+        let stockAvailability =3
+        return(
+                <div>
+                       {stockAvailability<=5 && <p className='text-danger'>left  {stockAvailability} only</p>}
+                </div>
+        )
      } 
 
 
