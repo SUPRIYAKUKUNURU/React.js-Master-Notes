@@ -12,7 +12,7 @@ function Laptop({ data }) {
 
   return (
     <>
-      <h1 className="text-center bg-primary m-2 rounded">
+      <h1 className="text-center bg-primary m-2 p-0 rounded">
         Laptop Products
       </h1>
       <div className="row g-4 p-4">
@@ -22,6 +22,7 @@ function Laptop({ data }) {
             <div className="card h-100 shadow-md rounded-4 border-0 product-card">
           
               <img
+              className="rounded"
                 src={item.image}
                 alt={item.productName}
                 style={{
