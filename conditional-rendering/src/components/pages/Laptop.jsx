@@ -25,11 +25,7 @@ function Laptop({ data }) {
               className="rounded"
                 src={item.image}
                 alt={item.productName}
-                style={{
-                  height: "200px",
-                  objectFit: "contain",
-                  background: "#fff",
-                }}
+               
               />
               <div style={{textAlign:"center"}}>
               <h3>{item.productName}</h3>
