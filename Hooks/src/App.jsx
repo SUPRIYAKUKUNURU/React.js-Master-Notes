@@ -1,17 +1,43 @@
-import React from 'react';
+// import React from 'react';
+// import {useState} from 'react';
+
+
+// // for Strings
+// export default function App(){
+//   const [name ,setName] = useState("Priya");
+ 
+//   const handleClick=()=>{
+//     setName("Supriya Kukunuru");
+//   }
+//   return(
+//     <>
+//     <h1>My Name is {name}</h1>
+//     <button onClick={handleClick}>Update Name</button>
+//     </>
+//   )
+
+// // }
+// 
+
+// For Objects:
+import React from 'react'
 import {useState} from 'react';
 
-export default function App(){
-  const [name ,setName] = useState("Priya");
- 
+function App() {
+  const[course,setCourse]= useState({name:"React.js",Designation:"Frontend Developer"});
   const handleClick=()=>{
-    setName("Supriya Kukunuru");
+    setCourse({...course,name:"Mern Stack Developer"})
   }
-  return(
-    <>
-    <h1>My Name is {name}</h1>
-    <button onClick={handleClick}>Update Name</button>
-    </>
-  )
+  
+  return (
+    <div>
+      <h2>{course.Designation}</h2>
+      <h1>{course.name}</h1>
+      
 
+      <button onClick={handleClick}>Update Course</button>
+    </div>
+  )
 }
+
+export default App;
