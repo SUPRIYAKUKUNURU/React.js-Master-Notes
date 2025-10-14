@@ -22,7 +22,8 @@
 // For Objects:
 import React from 'react'
 import {useState} from 'react';
-import Login from './components/Login';
+import Header from './components/Header';
+import Navigation from './components/Navigation';
 
 function App() {
   const[course,setCourse]= useState({name:"React.js",Designation:"Frontend Developer"});
@@ -35,8 +36,11 @@ function App() {
       {/* <h2>{course.Designation}</h2>
       <h1>{course.name}</h1>
       <button onClick={handleClick}>Update Course</button> */}
+      <Header />
+      <Navigation />
+  
     
-    <Login/>
+   
     
     </div>
   )
