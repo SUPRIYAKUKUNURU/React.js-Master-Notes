@@ -19,18 +19,18 @@ function UseState() {
   return(
     <>
     <h1>My Name is {name}</h1>
-    <button onClick={handleClick}>Update Name</button>
+    <button className='rounded bg-danger text-white' onClick={handleClick}>Update Name</button>
 
     <h1>Counter: {count}</h1>
-    <button onClick={handleClick1}>Click Me</button>
+    <button className='rounded bg-success text-white' onClick={handleClick1}>Click Me</button>
     
     <div style={{
         backgroundColor: isDark ? "black" : "white",
         color : isDark ? "white" : "black"
     }}>
 
-  <h2 >{isDark ? "DarkMode" : "Light Mode"}</h2>
-  <button onClick={handleToggle}>{isDark ? "Switch to Light": "Switch to Dark"}</button>
+<h2>{isDark ? "Dark Mode 🌙" : "Light Mode ☀️"}</h2> 
+ <button className="rounded "onClick={handleToggle}>{isDark ? "Switch to Light": "Switch to Dark"}</button>
         </div>
 
     </>
