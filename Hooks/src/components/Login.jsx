@@ -1,22 +1,21 @@
 import React, { useState } from "react";
-import "./Login.css";
+// ✅ Import Material UI components
+import { Box, TextField, Button, Typography, Link, Paper } from "@mui/material";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // store individual field errors
   const [errors, setErrors] = useState({
     username: "",
     email: "",
     password: "",
   });
 
-  // validation regexes (more practical for a full name)
-  const userRegex = /^[A-Za-z]+(?: [A-Za-z]+)+$/; // letters + at least one space (first + last name)
-  const emailRegex = /^[A-Za-z0-9._%+-]+@gmail\.com$/; // gmail only
-  const passwordRegex = /^[A-Z][a-z]{3,10}$/; // starts with uppercase, then 3-10 lowercase
+  const userRegex = /^[A-Za-z]+(?: [A-Za-z]+)+$/;
+  const emailRegex = /^[A-Za-z0-9._%+-]+@gmail\.com$/;
+  const passwordRegex = /^[A-Z][a-z]{3,10}$/;
 
   const validateField = (name, value) => {
     let msg = "";
@@ -52,7 +51,6 @@ function Login() {
   const handleChange = (setter) => (e) => {
     const { name, value } = e.target;
     setter(value);
-    // clear that field's error while typing
     setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
@@ -65,7 +63,6 @@ function Login() {
 
     if (!isUserValid || !isEmailValid || !isPassValid) return;
 
-    // success
     setErrors({ username: "", email: "", password: "" });
     alert("Sign up successful!");
     console.log("Submitted:", {
@@ -73,83 +70,97 @@ function Login() {
       email: email.trim(),
       password,
     });
-
-    // reset fields (optional)
-    // setUsername("");
-    // setEmail("");
-    // setPassword("");
   };
 
   return (
-    <div className="form-box mx-auto mt-5">
-      <form className="form" onSubmit={handleSubmit} noValidate>
-        <span className="title">Login</span>
-        <span className="subtitle">Create a free account with your email.</span>
+    // ✅ MUI Box used as main container (with Paper for card effect)
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "100vh",
+        backgroundColor: "#f5f5f5",
+      }}
+    >
+      {/* ✅ Paper adds a white card look with shadow */}
+      <Paper
+        elevation={4}
+        sx={{
+          p: 4,
+          borderRadius: 3,
+          width: 360,
+          textAlign: "center",
+        }}
+      >
+        <Typography variant="h5" fontWeight="bold" gutterBottom>
+          Login
+        </Typography>
 
-        <div className="form-container">
-          <input
+        <Typography variant="body2" color="text.secondary" mb={2}>
+          Create a free account with your email.
+        </Typography>
+
+        <Box component="form" onSubmit={handleSubmit} noValidate>
+          {/* ✅ TextField replaces <input>, with built-in label and error handling */}
+          <TextField
+            label="Full Name (e.g. John Doe)"
             name="username"
-            type="text"
-            className="input"
-            placeholder="Full Name (e.g. John Doe)"
+            fullWidth
+            margin="normal"
             value={username}
             onChange={handleChange(setUsername)}
             onBlur={handleBlur}
-            aria-invalid={!!errors.username}
-            aria-describedby="username-error"
+            error={!!errors.username}
+            helperText={errors.username}
           />
-          {errors.username && (
-            <p id="username-error" className="text-danger" role="alert">
-              {errors.username}
-            </p>
-          )}
 
-          <input
+          <TextField
+            label="Email (must be @gmail.com)"
             name="email"
-            type="text"
-            className="input"
-            placeholder="Email (must be @gmail.com)"
+            fullWidth
+            margin="normal"
             value={email}
             onChange={handleChange(setEmail)}
             onBlur={handleBlur}
-            aria-invalid={!!errors.email}
-            aria-describedby="email-error"
+            error={!!errors.email}
+            helperText={errors.email}
           />
-          {errors.email && (
-            <p id="email-error" className="text-danger" role="alert">
-              {errors.email}
-            </p>
-          )}
 
-          <input
+          <TextField
+            label="Password (Start with A, then 3-10 lowercase)"
             name="password"
             type="password"
-            className="input"
-            placeholder="Password (Start with A, then 3-10 lowercase)"
+            fullWidth
+            margin="normal"
             value={password}
             onChange={handleChange(setPassword)}
             onBlur={handleBlur}
-            aria-invalid={!!errors.password}
-            aria-describedby="password-error"
+            error={!!errors.password}
+            helperText={errors.password}
           />
-          {errors.password && (
-            <p id="password-error" className="text-danger" role="alert">
-              {errors.password}
-            </p>
-          )}
-        </div>
 
-        <button type="submit" className="submit">
-          Login
-        </button>
-      </form>
+          {/* ✅ MUI Button styled with variant and spacing */}
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            fullWidth
+            sx={{ mt: 2, py: 1 }}
+          >
+            Login
+          </Button>
+        </Box>
 
-      <div className="form-section">
-        <p>
-          Have an account? <a href="#">Sign Up</a>
-        </p>
-      </div>
-    </div>
+        {/* ✅ MUI Typography + Link for bottom section */}
+        <Typography variant="body2" sx={{ mt: 2 }}>
+          Have an account?{" "}
+          <Link href="#" underline="hover">
+            Sign Up
+          </Link>
+        </Typography>
+      </Paper>
+    </Box>
   );
 }
 

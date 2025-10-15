@@ -1,4 +1,12 @@
 import React, { useState } from "react";
+// Import required Material UI components
+import {
+  Box,
+  TextField,
+  Button,
+  Typography,
+  Paper,
+} from "@mui/material";
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -47,58 +55,87 @@ function Signup() {
     if (Object.keys(errors).length === 0) {
       alert("Signup successful!");
       console.log("Form Data:", formData);
-      // Optionally clear form
       setFormData({ username: "", password: "", cpassword: "" });
     }
   };
 
   return (
-    <div>
-      <form className="form" onSubmit={handleSubmit}>
-        <p className="form-title">Sign up to your account</p>
+    //  Box provides responsive container using MUI's flexbox system
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "100vh",
+        backgroundColor: "#f5f5f5",
+      }}
+    >
+      {/* Paper creates a white card-like container with shadow */}
+      <Paper
+        elevation={3}
+        sx={{
+          p: 4,
+          borderRadius: 3,
+          width: 350,
+          textAlign: "center",
+        }}
+      >
+        {/*  Typography replaces <p> or <h1> with Material UI text styling */}
+        <Typography variant="h5" fontWeight="bold" mb={2}>
+          Sign up to your account
+        </Typography>
 
-        <div className="input-container">
-          <input
-            onChange={handleChange}
+        {/*  MUI Box used as form wrapper */}
+        <Box component="form" onSubmit={handleSubmit}>
+          {/* TextField replaces <input> with built-in label, error & helper text */}
+          <TextField
+            label="Enter username"
             name="username"
+            fullWidth
+            margin="normal"
             value={formData.username}
-            type="text"
-            placeholder="Enter username"
-          />
-        </div>
-        <p className="text-danger">{formErrors.username}</p>
-
-        <div className="input-container">
-          <input
             onChange={handleChange}
+            error={!!formErrors.username}
+            helperText={formErrors.username}
+          />
+
+          <TextField
+            label="Enter password"
             name="password"
+            type="password"
+            fullWidth
+            margin="normal"
             value={formData.password}
-            type="password"
-            placeholder="Enter password"
-          />
-        </div>
-        <p className="text-danger">{formErrors.password}</p>
-
-        <div className="input-container">
-          <input
             onChange={handleChange}
-            name="cpassword"
-            value={formData.cpassword}
-            type="password"
-            placeholder="Confirm password"
+            error={!!formErrors.password}
+            helperText={formErrors.password}
           />
-        </div>
-        <p className="text-danger">{formErrors.cpassword}</p>
 
-        <button 
-          type="submit"
-          className="submit mx-auto"
-          style={{ width: "200px" }}
-        >
-          Sign Up
-        </button>
-      </form>
-    </div>
+          <TextField
+            label="Confirm password"
+            name="cpassword"
+            type="password"
+            fullWidth
+            margin="normal"
+            value={formData.cpassword}
+            onChange={handleChange}
+            error={!!formErrors.cpassword}
+            helperText={formErrors.cpassword}
+          />
+
+          {/*  MUI Button replaces <button>, styled with variant & spacing */}
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            fullWidth
+            sx={{ mt: 2, py: 1 }}
+          >
+            Sign Up
+          </Button>
+        </Box>
+      </Paper>
+    </Box>
   );
 }
 

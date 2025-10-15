@@ -24,6 +24,7 @@ import React from 'react'
 import {useState} from 'react';
 import Header from './components/Header';
 import Navigation from './components/Navigation';
+import Products from './components/Products';
 
 
 function App() {
@@ -39,7 +40,7 @@ function App() {
       <button onClick={handleClick}>Update Course</button> */}
       <Header />
       <Navigation />
-   
+   <Products />
     
     </div>
   )
