@@ -1,72 +1,100 @@
-import React, { useState } from 'react';
-import './Login.css';
+import React, { useState } from "react";
+import "./Login.css";
 
 function Login() {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   // store individual field errors
   const [errors, setErrors] = useState({
-    username: '',
-    email: '',
-    password: '',
+    username: "",
+    email: "",
+    password: "",
   });
 
-  // validation regexes
-  const userRegex = /^[A-Za-z]{10,20}$/; // 10-20 letters only
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/; // gmail only
+  // validation regexes (more practical for a full name)
+  const userRegex = /^[A-Za-z]+(?: [A-Za-z]+)+$/; // letters + at least one space (first + last name)
+  const emailRegex = /^[A-Za-z0-9._%+-]+@gmail\.com$/; // gmail only
   const passwordRegex = /^[A-Z][a-z]{3,10}$/; // starts with uppercase, then 3-10 lowercase
+
+  const validateField = (name, value) => {
+    let msg = "";
+
+    if (name === "username") {
+      if (!value.trim()) msg = "Full name is required.";
+      else if (!userRegex.test(value.trim()))
+        msg = "Enter first and last name (letters only, separated by space).";
+    }
+
+    if (name === "email") {
+      if (!value.trim()) msg = "Email is required.";
+      else if (!emailRegex.test(value.trim()))
+        msg = "Please enter a valid Gmail address (example@gmail.com).";
+    }
+
+    if (name === "password") {
+      if (!value) msg = "Password is required.";
+      else if (!passwordRegex.test(value))
+        msg =
+          "Password must start with an uppercase letter followed by 3–10 lowercase letters.";
+    }
+
+    setErrors((prev) => ({ ...prev, [name]: msg }));
+    return msg === "";
+  };
+
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    validateField(name, value);
+  };
+
+  const handleChange = (setter) => (e) => {
+    const { name, value } = e.target;
+    setter(value);
+    // clear that field's error while typing
+    setErrors((prev) => ({ ...prev, [name]: "" }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newErrors = { username: '', email: '', password: '' };
-    let valid = true;
+    const isUserValid = validateField("username", username);
+    const isEmailValid = validateField("email", email);
+    const isPassValid = validateField("password", password);
 
-    const trimmedUsername = username.trim();
-    const trimmedEmail = email.trim();
-    const trimmedPassword = password; // don't trim password (optional)
-
-    if (!userRegex.test(trimmedUsername)) {
-      newErrors.username = 'Full name must be 10–20 alphabetic characters (no spaces).';
-      valid = false;
-    }
-
-    if (!emailRegex.test(trimmedEmail)) {
-      newErrors.email = 'Please enter a valid Gmail address (example@gmail.com).';
-      valid = false;
-    }
-
-    if (!passwordRegex.test(trimmedPassword)) {
-      newErrors.password = 'Password must start with an uppercase letter followed by 3–10 lowercase letters.';
-      valid = false;
-    }
-
-    setErrors(newErrors);
-
-    if (!valid) return;
+    if (!isUserValid || !isEmailValid || !isPassValid) return;
 
     // success
-    setErrors({ username: '', email: '', password: '' });
-    alert('Sign up successful!');
-    // TODO: send to backend or further processing
-    console.log('Submitted:', { username: trimmedUsername, email: trimmedEmail, password: trimmedPassword });
+    setErrors({ username: "", email: "", password: "" });
+    alert("Sign up successful!");
+    console.log("Submitted:", {
+      username: username.trim(),
+      email: email.trim(),
+      password,
+    });
+
+    // reset fields (optional)
+    // setUsername("");
+    // setEmail("");
+    // setPassword("");
   };
 
   return (
     <div className="form-box mx-auto mt-5">
       <form className="form" onSubmit={handleSubmit} noValidate>
-        <span className="title">Sign up</span>
+        <span className="title">Login</span>
         <span className="subtitle">Create a free account with your email.</span>
 
-        <div className="form-container ">
+        <div className="form-container">
           <input
+            name="username"
             type="text"
             className="input"
-            placeholder="Full Name"
+            placeholder="Full Name (e.g. John Doe)"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={handleChange(setUsername)}
+            onBlur={handleBlur}
             aria-invalid={!!errors.username}
             aria-describedby="username-error"
           />
@@ -77,11 +105,13 @@ function Login() {
           )}
 
           <input
-            type="email"
+            name="email"
+            type="text"
             className="input"
-            placeholder="Email"
+            placeholder="Email (must be @gmail.com)"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleChange(setEmail)}
+            onBlur={handleBlur}
             aria-invalid={!!errors.email}
             aria-describedby="email-error"
           />
@@ -92,11 +122,13 @@ function Login() {
           )}
 
           <input
+            name="password"
             type="password"
             className="input"
-            placeholder="Password"
+            placeholder="Password (Start with A, then 3-10 lowercase)"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handleChange(setPassword)}
+            onBlur={handleBlur}
             aria-invalid={!!errors.password}
             aria-describedby="password-error"
           />
@@ -108,13 +140,13 @@ function Login() {
         </div>
 
         <button type="submit" className="submit">
-          Sign up
+          Login
         </button>
       </form>
 
       <div className="form-section">
         <p>
-          Have an account? <a href="#">Log in</a>
+          Have an account? <a href="#">Sign Up</a>
         </p>
       </div>
     </div>
