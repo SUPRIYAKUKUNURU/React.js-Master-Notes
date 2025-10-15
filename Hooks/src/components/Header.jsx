@@ -16,7 +16,7 @@ function Header() {
           <Link class="nav-link active" aria-current="page" to="/usestate">UseState</Link>
         </li>
         <li class="nav-item">
-          <Link to ="/useState" class="nav-link" href="#">UseEffect</Link>
+          <Link to ="/useeffect" class="nav-link" href="#">UseEffect</Link>
         </li>
         <li class="nav-item">
           <Link to="/signup" class="nav-link" aria-disabled="true">Signup</Link>

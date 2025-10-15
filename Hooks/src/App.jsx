@@ -25,6 +25,7 @@ import {useState} from 'react';
 import Header from './components/Header';
 import Navigation from './components/Navigation';
 
+
 function App() {
   const[course,setCourse]= useState({name:"React.js",Designation:"Frontend Developer"});
   const handleClick=()=>{
@@ -38,8 +39,6 @@ function App() {
       <button onClick={handleClick}>Update Course</button> */}
       <Header />
       <Navigation />
-  
-    
    
     
     </div>

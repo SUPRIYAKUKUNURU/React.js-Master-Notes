@@ -4,6 +4,7 @@ import Hooks from './Hooks'
 import Login from './Login'
 import UseState from './UseState'
 import Signup from './Signup'
+import UseEffect from './UseEffect'
 
 function Navigation() {
   return (
@@ -13,6 +14,7 @@ function Navigation() {
             <Route path="/signup" element={<Signup/>}/>
             <Route path="/login" element={<Login/>}/>
             <Route path="/usestate" element={<UseState/>}/>
+            <Route path ="/useeffect" element ={<UseEffect/>}/>
         </Routes>
     </div>
   )

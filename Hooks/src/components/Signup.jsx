@@ -90,7 +90,7 @@ function Signup() {
         </div>
         <p className="text-danger">{formErrors.cpassword}</p>
 
-        <button
+        <button 
           type="submit"
           className="submit mx-auto"
           style={{ width: "200px" }}
