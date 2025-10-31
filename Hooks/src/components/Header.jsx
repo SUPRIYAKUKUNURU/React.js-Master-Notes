@@ -19,6 +19,9 @@ function Header() {
           <Link to ="/useeffect" class="nav-link" href="#">UseEffect</Link>
         </li>
         <li class="nav-item">
+          <Link to="/useref" class="nav-link" aria-disabled="true">UseRef</Link>
+        </li>
+        <li class="nav-item">
           <Link to="/signup" class="nav-link" aria-disabled="true">Signup</Link>
         </li>
         <li class="nav-item">

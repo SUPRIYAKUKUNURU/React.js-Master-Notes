@@ -5,6 +5,7 @@ import Login from './Login'
 import UseState from './UseState'
 import Signup from './Signup'
 import UseEffect from './UseEffect'
+import UseRef from './UseRef'
 
 function Navigation() {
   return (
@@ -15,6 +16,7 @@ function Navigation() {
             <Route path="/login" element={<Login/>}/>
             <Route path="/usestate" element={<UseState/>}/>
             <Route path ="/useeffect" element ={<UseEffect/>}/>
+            <Route path="/useref" element={<UseRef/>}/>
         </Routes>
     </div>
   )
