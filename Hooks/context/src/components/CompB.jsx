@@ -10,6 +10,7 @@ function CompB({name}) {
         <h1>Course:{subs}</h1>
     
         <CompC name = {name} />
+
     </div>
   )
 }
